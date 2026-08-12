@@ -1,10 +1,8 @@
 package com.store;
 
+import com.store.controller.LoginController;
 import com.store.database.DatabaseInitializer;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -13,15 +11,9 @@ public class Main extends Application{
 
         DatabaseInitializer.initialize();
 
-        Label label = new Label("HITECH STORE INVENTORY SYSTEM");
+        LoginController loginController = new LoginController();
 
-        StackPane root = new StackPane(label);
-
-        Scene scene = new Scene(root, 800, 500);
-
-        stage.setTitle("HITECH STORE INVENTORY SYSTEM");
-        stage.setScene(scene);
-        stage.show();
+        loginController.showLogin(stage);
     }
 
     public static void main(String[] args) {
