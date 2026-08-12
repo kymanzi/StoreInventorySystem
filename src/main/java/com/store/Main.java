@@ -1,4 +1,4 @@
-/*package com.store;
+package com.store;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -23,8 +23,9 @@ public class Main extends Application{
     public static void main(String[] args) {
         launch();
     }
-} */
-package com.store;
+}
+
+/* package com.store;
 
 import com.store.database.Database;
 import javafx.application.Application;
@@ -64,4 +65,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
-}
+}*/
