@@ -19,7 +19,7 @@ public class DatabaseInitializer {
         String productsTable = """
                 CREATE TABLE IF NOT EXISTS products (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    product_name TEXT NOT NULL,
+                    product_name TEXT NOT NULL UNIQUE,
                     unit_type TEXT NOT NULL,
                     minimum_stock REAL NOT NULL DEFAULT 0,
                     description TEXT
@@ -44,7 +44,7 @@ public class DatabaseInitializer {
 
         String stockReceiptsTable = """
                 CREATE TABLE IF NOT EXISTS stock_receipts (
-                    id_integer PRIMARY KEY AUTOINCREMENT,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
                     product_id INTEGER NOT NULL,
                     supplier_id INTEGER,
                     date_received TEXT NOT NULL,
@@ -91,6 +91,13 @@ public class DatabaseInitializer {
             statement.execute(departmentsTable);
             statement.execute(stockReceiptsTable);
             statement.execute(stockIssuesTable);
+
+            String insertAdmin = """
+                    INSERT OR IGNORE INTO users (username, password, role)
+                    VALUES ('admin', 'admin' 'ADMIN')
+                    """;
+
+            statement.execute(insertAdmin);
 
             System.out.println("Database tables created successfully.");
         } catch (SQLException e) {
