@@ -1,5 +1,6 @@
 package com.store.controller;
 
+import com.store.controller.DashboardController;
 import com.store.dao.UserDAO;
 import com.store.model.User;
 import javafx.geometry.Insets;
@@ -14,12 +15,12 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    private final UserDAO userDAO = new UserDAO;
+    private final UserDAO userDAO = new UserDAO();
 
     public void showLogin(Stage stage) {
         Label title = new Label("HITECH STORE MANAGEMENT SYSTEM");
 
-        Label usernameLabel = new Label("Password");
+        Label usernameLabel = new Label("Username");
         TextField usernameField = new TextField();
         usernameField.setPromptText("Enter username");
 
@@ -44,9 +45,9 @@ public class LoginController {
             User user = userDAO.authenticate(username, password);
 
             if (user != null) {
-                messageLabel.setText(
-                        "Login successful. Welcome " + user.getUsername()
-                );
+                DashboardController dashboardController = new DashboardController();
+                dashboardController.showDashboard(stage, user);
+
             } else {
                 messageLabel.setText("Invalid username or password.");
             }
@@ -56,6 +57,7 @@ public class LoginController {
                 10,
                 title,
                 usernameLabel,
+                usernameField,
                 passwordLabel,
                 passwordField,
                 loginButton,
